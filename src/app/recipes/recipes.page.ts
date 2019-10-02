@@ -7,8 +7,8 @@ import { Recipe } from './recipe.model';
   styleUrls: ['./recipes.page.scss'],
 })
 export class RecipesPage implements OnInit {
-  recipes: Recipe[];
-  {
+  recipes: Recipe[] =
+ [ {
     id: 'r1',
     title: 'mee goreng',
     imageUrl: 'https://i2.wp.com/angsarap.net/wp-content/uploads/2014/04/mee-goreng-wide.jpg',
@@ -17,9 +17,10 @@ export class RecipesPage implements OnInit {
   {
     id: 'r2',
     title: 'nasi lemak',
-    imageUrl:'https://i.ytimg.com/vi/IUIs4C86Ilo/maxresdefault.jpg',
+    imageUrl: 'https://i.ytimg.com/vi/IUIs4C86Ilo/maxresdefault.jpg',
     ingredients: ['Nasi', 'Santan'],
-  }
+  }];
+
   constructor() { }
 
   ngOnInit() {
