@@ -12,4 +12,11 @@ export class LandingPage implements OnInit {
   ngOnInit() {
   }
 
+  login() {
+
+  }
+
+  register() {
+
+  }
 }
