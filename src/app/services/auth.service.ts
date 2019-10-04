@@ -38,8 +38,26 @@ export class AuthService {
   }
 
   register(fName: string, lName: string, email: string, password: string) {
-    return this.http.post('http://recipes.test/api/auth/register',
+    return this.http.post('this.env.API_URL + 'auth/this.register',
       { fName, lName, email, password }
     );
   }
-}// eof
+
+  getToken(){
+    return this.storage.getItem('token'.then(
+      data => {
+        this.yoken = data;
+
+        if (this.token != null){
+          this,isLoggedIn = true;
+        } else {
+          this.isLoggedIn = false;
+        }
+        },
+        error => {
+          this.token = null;
+          this.isLoggedIn = false;
+        }
+    );
+      }
+ }// eof
