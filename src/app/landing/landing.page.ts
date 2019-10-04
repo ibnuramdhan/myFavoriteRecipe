@@ -3,7 +3,7 @@ import { ModalController, NavController } from '@ionic/angular';
 import { LoginPage } from '../auth/login/login.page';
 import { RegisterPage } from '../auth/register/register.page';
 import { Router } from '@angular/router';
-import { AuthService} from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-landing',
@@ -14,7 +14,7 @@ export class LandingPage implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private router: Router
+    private router: Router,
     private authService: AuthService,
     private navCtrl: NavController
   ) {
@@ -35,10 +35,11 @@ export class LandingPage implements OnInit {
 
   ionViewWillEnter() {
     this.authService.getToken().then(
-      this.navCtrl.navigateRoot('/recipes');
-    }
-
-  });
+      () => {
+        if (this.authService.isLoggedIn) {
+          this.navCtrl.navigateRoot('/recipes');
+        }
+    });
   }
 
   ionViewDidEnter() {
