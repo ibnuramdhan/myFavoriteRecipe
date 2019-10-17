@@ -78,16 +78,17 @@ export class AuthService {
     );
   }
 
-getAllRecipes() {
-  const headers = new HttpHeaders({
-    'Authorization': this.token['token_type'] + ' ' + this.token['access_token']
-  });
+  getAllRecipes() {
+    const headers = new HttpHeaders({
+      'Authorization': this.token["token_type"] + ' ' + this.token["access_token"]
+    });
 
-  return this.http.get<Recipe[]>(this.env.API_URL + 'recipe', {headers: headers })
-  .pipe(
-    tap(recipes => {
-      return recipes;
-    })
-  );
-}
+    return this.http.get<Recipe[]>(this.env.API_URL + 'recipe', { headers: headers })
+    .pipe(
+      tap(recipes => {
+        return recipes;
+      })
+    );
+  }
+
 }// eof
