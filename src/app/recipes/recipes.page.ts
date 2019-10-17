@@ -19,6 +19,19 @@ export class RecipesPage implements OnInit {
   ngOnInit() {
     }
 
+      ionViewWillEnter() {
+        this.displayRecipe();
+      }
+      displayRecipe() {
+        this.authService.getAllRecipes().subscribe(
+          recipes => {
+            this.recipes = recipes;
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
   logout() {
     this.authService.logout().subscribe(
       data => {

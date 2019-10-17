@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { EnvService } from './env.service';
 import { tap } from 'rxjs/operators';
+import { Recipe } from '../recipes/recipe.model';
 
 @Injectable({
   providedIn: 'root'
@@ -66,7 +67,7 @@ export class AuthService {
       'Authorization': this.token['token_type'] + ' ' + this.token['access_token']
     });
 
-    return this.http.get(this.env.API_URL + 'auth/logout' { headers })
+    return this.http.get(this.env.API_URL + 'auth/logout', { headers })
     .pipe(
       tap(data => {
         this.storage.remove('token');
@@ -77,4 +78,16 @@ export class AuthService {
     );
   }
 
+getAllRecipes() {
+  const headers = new HttpHeaders({
+    'Authorization': this.token['token_type'] + ' ' + this.token['access_token']
+  });
+
+  return this.http.get<Recipe[]>(this.env.API_URL + 'recipe', {headers: headers })
+  .pipe(
+    tap(recipes => {
+      return recipes;
+    })
+  );
+}
 }// eof
